@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load rango_template_tags %}
+
+{% block title %}
+{{ object.name }}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+</div>
+<div style="margin-top: 20px">
+    <img src="/media/{{ object.img }}" alt="" style="width: 300px;height: 300px">
+</div>
+<div>
+    <div>
+        <br>
+        <h3>Name: {{ object.name }}</h3>
+        Sweetness: {{ object.sweetness }} <br>
+        Type: {{ object.type }} <br>
+        Size: {{ object.size }} <br>
+    </div>
+    <hr>
+    <div>
+        Location: {{ object.location }}
+    </div>
+    <hr>
+
+    <div>
+        <a class="btn btn-success {% if object|is_like_product:request.user %}disabled{% endif %}"  href="{% url 'rango:product-like' object.pk %}">Like Product</a>
+    </div>
+
+</div>
+{% endblock %}

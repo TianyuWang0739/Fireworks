@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <title>{% block title %}{% endblock %}</title>
+    {% block header %}
+    {% endblock %}
+    <style>
+        body {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+            background-color: #F4E8D7;
+    }
+        .nav-link{
+            color: #575757;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+{% include 'components/nav.html' %}
+<main role="main">
+<div class="container" style="background-color: #FBF5EC;margin-top: 30px;min-height: 900px">
+    <ul class="breadcrumb" style="background-color: #FBF5EC">
+        <li>
+            <a href="/">Home</a> <span class="divider">></span>
+        </li>
+        <li class="active">&nbsp;{% block page_title %}{% endblock %}</li>
+    </ul>
+    {% block content %}
+
+    {% endblock %}
+</div>
+</main>
+
+{% block js %}
+{% endblock %}
+</body>
+</html>

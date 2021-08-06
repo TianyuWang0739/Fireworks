@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #FBF5EC">
+<a class="navbar-brand" href="#" style="color: #575757">Dessert Desire</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="/" style="color: #E1A59C">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'rango:about' %}" tabindex="-1" aria-disabled="true" style="color: #575757">About</a>
+    </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'rango:trending' %}" tabindex="-1" aria-disabled="true" style="color: #575757">Trending</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'rango:discovery' %}" tabindex="-1" aria-disabled="true" style="color: #575757">Discovery</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'rango:bakers' %}" tabindex="-1" aria-disabled="true" style="color: #575757">Bakers</a>
+      </li>
+    <li class="nav-item" >
+      <a class="nav-link" href="{% url 'rango:category-list' %}" style="color: #575757">Categories</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'rango:product-list' %}" style="color: #575757">Shops</a>
+    </li>
+
+  </ul>
+  <div class="mt-2 mt-md-0">
+
+      {% if request.user.is_authenticated %}
+          <a href="{% url 'rango:profile' %}" style="color: #575757">{{ request.user.username }}</a><span> / </span><a href="{% url 'rango:logout' %}" style="color: #575757">Logout</a>
+      {% else %}
+          <a class="btn btn-secondary" href="{% url 'rango:login' %}" style="color: #FBF5EC">Login</a>
+      {% endif %}
+  </div>
+<form class="form-inline mt-2 mt-md-0" style="margin-left: 20px">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+</nav>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Categories
+{% endblock %}
+
+{% block page_title %}
+Categories
+{% endblock %}
+
+{% block content %}
+
+{#{% if request.user.is_authenticated %}#}
+{#    <a href="{% url 'rango:add_category' %}" class="btn btn-primary">Add Category</a>#}
+{#{% endif %}#}
+<div style="margin-top: 20px">
+{#{% for i in object_list %}#}
+{#    <a href="{% url 'rango:show_category' i.slug %}" style="font-size: 20px">{{ i.name }}</a> <br>#}
+{#    <hr>#}
+{#{% endfor %}#}
+<h2 style="text-align: center">BROWSE VARIOUS DESSERTS</h2>
+<hr style="margin: 40px 0">
+<p style="text-align: center">Find your favorite among the many desserts! Just like the prince finds Cinderella!</p>
+</div>
+
+<div style="margin-top: 40px">
+    <h4>FEATURED DESERTS</h4>
+    <p style="margin-left: 150px">
+        The most popular dessert nowadays. Very tasty for this spring.
+    </p>
+</div>
+<div class="row" style="display: flex;justify-content: center">
+    <div style="background-color: #F9E3C8;height: 500px" class="col-md-10">
+        <h4 style="margin-top: 20px;text-align: center">EXPLORE HUNDREDS OF DESSERT RECIPES</h4>
+        <br>
+        <p style="text-align: center">Find your new favorite  dessert in our amazing collection of easy recipes.</p>
+        <div class="row" style="margin-left: 5px;margin-bottom: 20px">
+        You can add category
+        <a class="" href="{% url 'rango:add_category' %}">
+            &nbsp;here
+        </a>.
+        </div>
+        <div>
+            {% for i in object_list %}
+                <a href="{% url 'rango:show_category' i.slug %}" style="font-size: 16px">{{ i.name }}</a> <br>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+Login
+{% endblock %}
+
+{% block content %}
+<h1>Login to Rango</h1>
+<form id="login_form" method="post" action="{% url 'rango:login' %}">
+    {% csrf_token %}
+    Username: <input type="text" name="username" value="" size="50" class="form-control"/>
+    <br />
+    Password: <input type="password" name="password" value="" size="50" class="form-control" />
+    <br />
+    <a class="btn btn-sm btn-link" href="{% url 'google_login' %}">Google</a>
+    <br>
+    <a href="{% url 'rango:register' %}" class="btn btn-sm btn-link">Do not Have a account?</a>
+    <br><br>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+{% endblock %}

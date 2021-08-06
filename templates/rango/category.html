@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load rango_template_tags %}
+
+{% block header %}
+    <style>
+    .form-group{
+        margin-right: 10px;
+    }
+    .row{
+        margin-left: 0;
+    }
+    </style>
+{% endblock %}
+
+{% block page_title %}
+
+{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center">{% if category %}
+        {{ category.name }}
+    {% else %}
+        Unknown Category
+    {% endif %}</h1>
+    {% if category %}
+    {% if user.is_authenticated %}
+    <div class="row">
+    You can add page
+    <a class="" href="{% url 'rango:add_page' category.slug %}">
+        &nbsp;here
+    </a>.
+    </div>
+    {% endif %}
+    {% if pages %}
+    <ul style="margin-top: 20px">
+        {% for page in pages %}
+            <li style="display: flex;justify-content: space-between"><a href="{{ page.url }}" style="font-size: 20px" class="btn-link">{{ page.title }}</a>
+                {% if not page|is_like_page:request.user %}<a href="{% url 'rango:page-like' page.pk %}">Like</a>{% endif %}
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <strong>No pages currently in category.</strong>
+    {% endif %}
+
+
+    {% else %}
+    The specified category does not exist.
+    {% endif %}
+{% endblock %}
