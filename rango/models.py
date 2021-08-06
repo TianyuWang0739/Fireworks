@@ -4,7 +4,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-
+# The attributes of categories
 class Category(models.Model):
     NAME_MAX_LENGTH = 128
 
@@ -23,7 +23,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-
+# The attributes of pages
 class Page(models.Model):
     TITLE_MAX_LENGTH = 128
     URL_MAX_LENGTH = 200
@@ -36,7 +36,7 @@ class Page(models.Model):
     def __str__(self):
         return self.title
 
-
+# The users' profile when login
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     website = models.URLField(blank=True)
@@ -45,7 +45,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-
+# The attributes of products
 class Product(models.Model):
     SIZE_CHOICES = (
         ('Small', 'Small'),

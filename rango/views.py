@@ -13,7 +13,7 @@ from rango.models import Category, Page, Product, FavoriteProduct, FavoritePage
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm, ProductForm, FilterForm
 from datetime import datetime
 
-
+# This is about the index page
 def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
     page_list = Page.objects.order_by('-views')[:5]
@@ -26,7 +26,7 @@ def index(request):
 
     return render(request, 'rango/home.html', context=context_dict)
 
-
+# This is about the "About us" page
 def about(request):
 
     context_dict = {}
@@ -35,6 +35,7 @@ def about(request):
 
     return render(request, 'rango/about.html', context=context_dict)
 
+# This is about the "Categories" page
 def show_category(request, category_name_slug):
     context_dict = {}
 
@@ -89,7 +90,7 @@ def add_page(request, category_name_slug):
 
                 return redirect(reverse('rango:show_category', kwargs={'category_name_slug': category_name_slug}))
         else:
-            print(form.errors)  # This could be better done; for the purposes of TwD, this is fine. DM.
+            print(form.errors)  
     
     context_dict = {'form': form, 'category': category}
     return render(request, 'rango/add_page.html', context=context_dict)
@@ -123,6 +124,7 @@ def register(request):
     return render(request, 'rango/register.html', 
                context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
+# This is about the "Login" page
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -171,23 +173,23 @@ def visitor_cookie_handler(request):
     
     request.session['visits'] = visits
 
-
+# This is about the "CategoryListView" page
 class CategoryListView(ListView):
     queryset = Category.objects.all()
     template_name = 'rango/category-list.html'
 
-
+# This is about the "Profile" page
 class Profile(TemplateView):
     template_name = 'rango/profile.html'
 
-
+# This is about the "ProductAddView" page
 class ProductAddView(LoginRequiredMixin, CreateView):
     model = Product
     form = ProductForm
     template_name = 'rango/product-add.html'
     fields = '__all__'
 
-
+# This is about the "ProductListView" page
 class ProductListView(FormMixin, ListView):
     model = Product
     template_name = 'rango/product-list.html'
@@ -226,17 +228,17 @@ class ProductListView(FormMixin, ListView):
         })
         return kwargs
 
-
+# This is about the "PageDetailView" page
 class PageDetailView(DetailView):
     model = Page
     template_name = 'rango/page-detail.html'
 
-
+# This is about the "ProductDetailView" page
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'rango/product-detail.html'
 
-
+# This is about the "LikeProduct" page
 class LikeProduct(LoginRequiredMixin, SingleObjectMixin, View):
     model = Product
 
@@ -245,7 +247,7 @@ class LikeProduct(LoginRequiredMixin, SingleObjectMixin, View):
         FavoriteProduct.objects.create(product=obj, user=request.user)
         return redirect('rango:product-detail', pk=obj.pk)
 
-
+# This is about the "LikePage(" page
 class LikePage(LoginRequiredMixin, SingleObjectMixin, View):
     model = Page
 
